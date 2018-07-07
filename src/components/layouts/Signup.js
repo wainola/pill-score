@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Form, Header, Grid, Responsive, Segment, Container, Button } from 'semantic-ui-react'
+import { Form, Header, Grid, Responsive, Segment, Container, Button, Message } from 'semantic-ui-react'
+import * as lodash from 'lodash'
 
 export class Signup extends Component {
   constructor(props){
@@ -8,15 +9,51 @@ export class Signup extends Component {
       user: {
         email: '',
         password: ''
-      }
+      },
+      error: {}
     }
   }
-  onChange = () => {
-    // this.setState({})    
+  onChange = e => {
+    // this.setState({})
+    console.log('change', e.target.value)
+    this.setState({
+      ...this.state,
+      user: {
+        [e.target.name]: e.target.value
+      }
+    })
   }
   onSubmit = e => {
     e.preventDefault()
-    
+    console.log('submit', this.state)
+    const error = this.validate(this.state.user)
+    if(lodash.isEmpty(error)){
+      // send data
+    }
+    else{
+      let messages = []
+      if(!!error.email){
+        messages.push(error.email)
+      }
+      if(!!error.password){
+        messages.push(error.password)
+      }
+      console.log('mesages', messages)
+      this.setState({
+        ...this.state,
+        error: { messages } 
+      })
+    }
+  }
+  validate = data => {
+    const error = {}
+    if(!data.email){
+      error.email = 'Email no pude esta vacío'
+    }
+    if(!data.password){
+      error.password = 'Password no puede estar vacío'
+    }
+    return error
   }
   render() {
     return (
@@ -30,6 +67,26 @@ export class Signup extends Component {
                   <Segment raised style={{ marginTop: '15px'}}>
                     <Form onSubmit={this.onSubmit}>
                       <Header as='h3'>Signup</Header>
+                      {lodash.isEmpty(this.state.error) ? 
+                        <div></div>
+                        :
+                        <Message negative>
+                          <Message.Header>Ha ocurrido un error</Message.Header>
+                          <div>
+                            <p>
+                              Error:
+                            </p>
+                            <ul>
+                              {
+                                this.state.error.messages instanceof Array ? 
+                                this.state.error.messages.filter(message => message !== undefined).map(message => <li>{message}</li>)
+                                :
+                                <div></div>
+                              }
+                            </ul>
+                          </div>
+                        </Message>
+                      }
                       <Form.Field>
                         <Form.Input 
                         name='email'
