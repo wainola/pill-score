@@ -9,6 +9,7 @@ import UserRoute from './components/routes/UserRouter';
 import Navigation from './components/Navigation/Navigation';
 
 import LoginPage from './components/layouts/login';
+import Signup from './components/layouts/Signup'
 import Dashboard from './components/layouts/Dashboard/Dashboard';
 import { connect } from 'react-redux';
 
@@ -18,6 +19,7 @@ const App = ({ location, isAuthenticated }) => (
   {isAuthenticated && <Navigation />}
     <Route location={location} path='/' exact component={() => (<Redirect to="/login" />)} />
     <GuestRoute location={location} path='/login' exact component={LoginPage} isAuthenticated={isAuthenticated} />
+    <GuestRoute location={location} path='/sign-up' exact component={Signup} isAuthenticated={isAuthenticated} />
     <UserRoute location={location} path='/dashboard' exact component={Dashboard} isAuthenticated={isAuthenticated} />
   </div>
   )

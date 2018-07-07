@@ -10,7 +10,7 @@ const initialState = {
   token: '',
   name: '',
   id: '',
-  isAuthenticated: false,
+  isAuthenticated: true,
   error: {
     message: '',
   },

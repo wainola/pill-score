@@ -18,7 +18,18 @@ class LoginForm extends Component {
       isFetching: false
     }
   }
+  
+  onChange = (event) => {
+    event.preventDefault();
 
+    this.setState({
+      ...this.state,
+      credentials: {
+        ...this.state.credentials,
+        [event.target.name]: event.target.value
+      }
+    });
+  }
   onSubmit = (event) => {
     event.preventDefault();
 
@@ -41,17 +52,6 @@ class LoginForm extends Component {
       })
   }
 
-  onChange = (event) => {
-    event.preventDefault();
-
-    this.setState({
-      ...this.state,
-      credentials: {
-        ...this.state.credentials,
-        [event.target.name]: event.target.value
-      }
-    });
-  }
 
   render () {
     return (
