@@ -7,3 +7,4 @@ export const OK_LOGIN = 'OK_LOGIN';
 export const POST_ASSET = 'POST_ASSET';
 export const OK_POST_ASSET = 'OK_POST_ASSET';
 export const FAIL_POST_ASSET = 'FAIL_POST_ASSET';
+export const IS_VISIBLE = 'IS_VISIBLE'
