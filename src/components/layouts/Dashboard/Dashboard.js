@@ -9,7 +9,7 @@ import {
   Segment
 } from 'semantic-ui-react';
 
-import AssetForm from './AssetForm';
+import CardsPills from './CardsPills';
 
 const Dashboard = () => (
     <div>
@@ -19,7 +19,7 @@ const Dashboard = () => (
                     <Grid.Row>
                         <Grid.Column>
                             <Segment basic style={{ minHeight: window.innerHeight }}>
-                                <AssetForm />
+                              <CardsPills />
                             </Segment>
                         </Grid.Column>
                     </Grid.Row>
