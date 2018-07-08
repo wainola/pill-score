@@ -29,32 +29,38 @@ export class CardsPills extends Component {
      ]
     }
   }
+  renderCardPills = item => {
+    console.log(item)
+    return (
+       <Card>
+          <Image src={item.image} />
+          <Card.Content>
+            <Card.Header>{item.report_name}</Card.Header>
+            <Card.Meta>{item.date}</Card.Meta>
+            <Card.Description>
+              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Architecto earum, consequuntur, ex nostrum exercitationem voluptates ab iure est in corrupti, vero delectus ipsam doloremque nulla quaerat dolor quas possimus nobis.
+            </Card.Description>
+          </Card.Content>
+          <Card.Content extra>
+            <div className='ui two buttons'>
+              <Button basic color='green'>
+                Like it!
+              </Button>
+              <Button basic color='red'>
+                Don't Like it!
+              </Button>
+            </div>
+          </Card.Content>
+        </Card>
+    )
+  }
   render() {
-    console.log('cardpills')
+    console.log('cardpills', this.state.pills.length)
     return (
       <div>
-        <Card.Group>
+        < Card.Group itemsPerRow={3}>
           { this.state.pills.lenght !== 0 ?
-            <Card>
-              <Card.Content>
-                <Image floated='right' size='mini' src='/images/avatar/large/steve.jpg' />
-                <Card.Header>Steve Sanders</Card.Header>
-                <Card.Meta>Friends of Elliot</Card.Meta>
-                <Card.Description>
-                  Steve wants to add you to the group <strong>best friends</strong>
-                </Card.Description>
-              </Card.Content>
-              <Card.Content extra>
-                <div className='ui two buttons'>
-                  <Button basic color='green'>
-                    Approve
-                  </Button>
-                  <Button basic color='red'>
-                    Decline
-                  </Button>
-                </div>
-              </Card.Content>
-            </Card>
+            this.state.pills.map(item => this.renderCardPills(item))
           :
           <div></div>
           }
